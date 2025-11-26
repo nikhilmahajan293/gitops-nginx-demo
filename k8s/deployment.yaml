@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+spec:
+  # number of replicas to be created
+  replicas: 1
+
+  # rule to select the pods managed by this deployment object
+  selector:
+    matchLabels:
+      app: nginx
+
+  # create pod(s) if they do not exist
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nikhilmahajan293/gitops-nginx-demo:1.0
+          ports:
+              - containerPort: 80
